@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Stores\ModalNavigationStore.cs" />
+    <Compile Include="Stores\MoviesStore.cs" />
     <Compile Include="Stores\SelectedMovieStore.cs" />
     <Compile Include="ViewModels\AddMovieViewModel.cs" />
     <Compile Include="ViewModels\EditMovieViewModel.cs" />

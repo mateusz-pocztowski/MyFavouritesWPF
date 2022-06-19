@@ -11,16 +11,18 @@ namespace MyFavouritesWPF.Commands
 {
     public class OpenAddMovieCommand : CommandBase
     {
+        private readonly MoviesStore _moviesStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
-        public OpenAddMovieCommand(ModalNavigationStore modalNavigationStore)
+        public OpenAddMovieCommand(MoviesStore moviesStore, ModalNavigationStore modalNavigationStore)
         {
+            _moviesStore = moviesStore;
             _modalNavigationStore = modalNavigationStore;
         }
 
         public override void Execute(object parameter)
         {
-            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(_modalNavigationStore);
+            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(_moviesStore, _modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = addMovieViewModel;
         }
     }

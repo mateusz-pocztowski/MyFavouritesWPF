@@ -13,9 +13,9 @@ namespace MyFavouritesWPF.ViewModels
     {
         public MovieDetailsFormModel MovieDetailsFormModel { get;  }
 
-        public AddMovieViewModel(ModalNavigationStore modalNavigationStore)
+        public AddMovieViewModel(MoviesStore moviesStore, ModalNavigationStore modalNavigationStore)
         {
-            ICommand submitCommand = new SubmitAddMovieCommand(modalNavigationStore);
+            ICommand submitCommand = new SubmitAddMovieCommand(this, moviesStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
 
             MovieDetailsFormModel = new MovieDetailsFormModel(submitCommand, cancelCommand);

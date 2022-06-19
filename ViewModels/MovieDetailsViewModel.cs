@@ -10,7 +10,6 @@ namespace MyFavouritesWPF.ViewModels
     public class MovieDetailsViewModel : ViewModelBase
     {
         private readonly SelectedMovieStore _selectedMovieStore;
-
         public string Name => _selectedMovieStore.selectedMovie?.Name ?? "-";
         public string Genre => _selectedMovieStore.selectedMovie?.Genre ?? "-";
         public string ReleaseYear => _selectedMovieStore.selectedMovie?.ReleaseYear ?? "-";

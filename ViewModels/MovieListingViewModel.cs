@@ -13,7 +13,9 @@ namespace MyFavouritesWPF.ViewModels
 {
     public class MovieListingViewModel : ViewModelBase
     {
+        private readonly MoviesStore _moviesStore;
         private readonly SelectedMovieStore _selectedMovieStore;
+        private readonly ModalNavigationStore _modalNavigationStore;
 
         private readonly ObservableCollection<MovieListingItemViewModel> _movieListingItemViewModels;
 
@@ -36,19 +38,30 @@ namespace MyFavouritesWPF.ViewModels
             }
         }
 
-        public MovieListingViewModel(SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
+        public MovieListingViewModel(MoviesStore moviesStore, SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
         {
+            _moviesStore = moviesStore;
             _selectedMovieStore = selectedMovieStore;
+            _modalNavigationStore = modalNavigationStore;
             _movieListingItemViewModels = new ObservableCollection<MovieListingItemViewModel>();
 
-            AddMovie(new Movie("Movie 1", "Genre 1", "2014"), modalNavigationStore);
-            AddMovie(new Movie("Movie 2", "Genre 2", "2015"), modalNavigationStore);
-            AddMovie(new Movie("Movie 3", "Genre 3", "2016"), modalNavigationStore);
+            _moviesStore.MovieAdded += MoviesStore_MovieAdded;
         }
 
-        private void AddMovie(Movie movie, ModalNavigationStore modalNavigationStore)
+        protected override void Dispose()
         {
-            ICommand editCommand = new OpenEditMovieCommand(movie, modalNavigationStore);
+            _moviesStore.MovieAdded -= MoviesStore_MovieAdded;
+            base.Dispose();
+        }
+
+        private void MoviesStore_MovieAdded(Movie movie)
+        {
+            AddMovie(movie);
+        }
+
+        private void AddMovie(Movie movie)
+        {
+            ICommand editCommand = new OpenEditMovieCommand(movie, _modalNavigationStore);
             _movieListingItemViewModels.Add(new MovieListingItemViewModel(movie, editCommand));
         }
     }

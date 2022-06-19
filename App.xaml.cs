@@ -9,19 +9,23 @@ namespace MyFavouritesWPF
     /// </summary>
     public partial class App : Application
     {
+        private readonly MoviesStore _moviesStore;
         private readonly SelectedMovieStore _selectedMovieStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
         public App()
         {
+            _moviesStore = new MoviesStore();
             _selectedMovieStore = new SelectedMovieStore();
             _modalNavigationStore = new ModalNavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            MovieViewModel moviesViewModel = new MovieViewModel(_moviesStore, _selectedMovieStore, _modalNavigationStore);
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_modalNavigationStore, new MovieViewModel(_selectedMovieStore, _modalNavigationStore))
+                DataContext = new MainViewModel(_modalNavigationStore, moviesViewModel)
             };
             MainWindow.Show();
 
