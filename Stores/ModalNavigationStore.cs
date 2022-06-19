@@ -23,6 +23,8 @@ namespace MyFavouritesWPF.Stores
             }
         }
 
+        public bool IsOpen => CurrentViewModel != null;
+
         public event Action CurrentViewModelChanged;
     }
 }

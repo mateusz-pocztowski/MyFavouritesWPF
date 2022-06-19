@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Components\DropdownMenu.cs" />
+    <Compile Include="Components\Modal.cs" />
     <Compile Include="Components\MovieDetails.xaml.cs">
       <DependentUpon>MovieDetails.xaml</DependentUpon>
     </Compile>
@@ -66,7 +67,12 @@
       <DependentUpon>MovieListing.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Stores\ModalNavigationStore.cs" />
     <Compile Include="Stores\SelectedMovieStore.cs" />
+    <Compile Include="ViewModels\AddMovieViewModel.cs" />
+    <Compile Include="ViewModels\EditMovieViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MovieDetailsFormModel.cs" />
     <Compile Include="ViewModels\MovieDetailsViewModel.cs" />
     <Compile Include="ViewModels\MovieListingItemViewModel.cs" />
     <Compile Include="ViewModels\MovieListingViewModel.cs" />

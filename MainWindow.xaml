@@ -3,15 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyFavouritesWPF" xmlns:views="clr-namespace:MyFavouritesWPF.Views"
+        xmlns:components="clr-namespace:MyFavouritesWPF.Components" xmlns:views="clr-namespace:MyFavouritesWPF.Views"
+        xmlns:vms="clr-namespace:MyFavouritesWPF.ViewModels"
         mc:Ignorable="d"
         FontSize="14"
         FontFamily="Montserrat"
         Title="My Favourite movies" Height="450" Width="800">
-
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
-        <StackPanel Margin="20 10 20 20" >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vms:AddMovieViewModel}">
             <views:AddMovieView />
-        </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vms:EditMovieViewModel}">
+            <views:EditMovieView />
+        </DataTemplate>
+    </Window.Resources>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+        <Grid>
+            <components:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+                <ContentControl MinWidth="200" Margin="50 25" Content="{Binding CurrentModalViewModel}" />
+            </components:Modal>
+            
+            <views:MovieView Margin="20 10 20 20" DataContext="{Binding MovieViewModel}" />
+        </Grid>
     </ScrollViewer>
 </Window>

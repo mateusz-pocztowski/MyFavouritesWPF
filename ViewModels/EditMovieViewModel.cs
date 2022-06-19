@@ -8,5 +8,11 @@ namespace MyFavouritesWPF.ViewModels
 {
     public class EditMovieViewModel : ViewModelBase
     {
+        public MovieDetailsFormModel MovieDetailsFormModel { get; }
+
+        public EditMovieViewModel()
+        {
+            MovieDetailsFormModel = new MovieDetailsFormModel();
+        }
     }
 }
