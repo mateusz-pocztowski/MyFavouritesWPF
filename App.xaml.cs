@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using MyFavouritesWPF.ViewModels;
+using System.Windows;
 
 namespace MyFavouritesWPF
 {
@@ -9,7 +10,10 @@ namespace MyFavouritesWPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow();
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MovieViewModel()
+            };
             MainWindow.Show();
 
             base.OnStartup(e);

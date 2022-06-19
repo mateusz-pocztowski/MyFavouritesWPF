@@ -20,7 +20,7 @@
 
             <TextBlock Grid.Column="0" FontWeight="Medium" FontSize="28" Text="Movies" />
 
-            <Button Grid.Column="1" Content="Add" />
+            <Button Grid.Column="1" Content="Add" Command="{Binding AddMovieCommand}" />
         </Grid>
 
         <Grid Grid.Row="1" Margin="0 10 0 0">
@@ -29,9 +29,9 @@
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <components:MainListing Grid.Column="0" />
-            
-            <components:MainDetails Margin="15 0 0 0" Grid.Column="1" />
+            <components:MainListing Grid.Column="0" DataContext="{Binding MovieListingViewModel}" />
+
+            <components:MainDetails Margin="15 0 0 0" Grid.Column="1"  DataContext="{Binding MovieDetailsViewModel}" />
         </Grid>
     </Grid>
 </UserControl>

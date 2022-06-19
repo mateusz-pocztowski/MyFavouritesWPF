@@ -55,12 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Components\DropdownMenu.cs" />
     <Compile Include="Components\MovieDetails.xaml.cs">
       <DependentUpon>MovieDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MovieListing.xaml.cs">
       <DependentUpon>MovieListing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MovieDetailsViewModel.cs" />
+    <Compile Include="ViewModels\MovieListingItemViewModel.cs" />
+    <Compile Include="ViewModels\MovieListingViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MovieView.xaml.cs">
