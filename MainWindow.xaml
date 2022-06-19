@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         FontSize="14"
         FontFamily="Montserrat"
-        Title="My Favourites" Height="450" Width="800">
-    <Grid Margin="20 10 20 20" >
-        <views:MovieView />
-    </Grid>
+        Title="My Favourite movies" Height="450" Width="800">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+        <StackPanel Margin="20 10 20 20" >
+            <views:AddMovieView />
+        </StackPanel>
+    </ScrollViewer>
 </Window>

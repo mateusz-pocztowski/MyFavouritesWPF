@@ -59,6 +59,9 @@
     <Compile Include="Components\MovieDetails.xaml.cs">
       <DependentUpon>MovieDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\MovieDetailsForm.xaml.cs">
+      <DependentUpon>MovieDetailsForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\MovieListing.xaml.cs">
       <DependentUpon>MovieListing.xaml</DependentUpon>
     </Compile>
@@ -69,10 +72,20 @@
     <Compile Include="ViewModels\MovieListingViewModel.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AddMovieView.xaml.cs">
+      <DependentUpon>AddMovieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditMovieView.xaml.cs">
+      <DependentUpon>EditMovieView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MovieView.xaml.cs">
       <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
     <Page Include="Components\MovieDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MovieDetailsForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,6 +105,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddMovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditMovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MovieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
