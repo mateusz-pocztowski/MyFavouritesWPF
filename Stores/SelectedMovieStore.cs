@@ -9,9 +9,11 @@ namespace MyFavouritesWPF.Stores
 {
     public class SelectedMovieStore
     {
+        private readonly MoviesStore _moviesStore;
+
         private Movie _selectedMovie;
 
-        public Movie selectedMovie
+        public Movie SelectedMovie
         {
             get
             {
@@ -25,5 +27,20 @@ namespace MyFavouritesWPF.Stores
         }
 
         public event Action SelectedMovieChanged;
+
+        public SelectedMovieStore(MoviesStore moviesStore)
+        {
+            _moviesStore = moviesStore;
+
+            _moviesStore.MovieUpdated += MoviesStore_MovieUpdated;
+        }
+
+        private void MoviesStore_MovieUpdated(Movie movie)
+        {
+            if(movie.Id == SelectedMovie?.Id)
+            {
+                SelectedMovie = movie;
+            }
+        }
     }
 }

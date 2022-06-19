@@ -26,6 +26,7 @@ namespace MyFavouritesWPF.Commands
             var formViewModel = _addMovieViewModel.MovieDetailsFormModel;
 
             Movie movie = new Movie(
+                Guid.NewGuid(),
                 formViewModel.Name,
                 formViewModel.Genre,
                 formViewModel.ReleaseYear

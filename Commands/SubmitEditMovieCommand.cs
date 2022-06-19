@@ -1,4 +1,6 @@
-﻿using MyFavouritesWPF.Stores;
+﻿using MyFavouritesWPF.Models;
+using MyFavouritesWPF.Stores;
+using MyFavouritesWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +11,38 @@ namespace MyFavouritesWPF.Commands
 {
     public class SubmitEditMovieCommand : AsyncCommandBase
     {
+        private readonly MoviesStore _moviesStore;
         private readonly ModalNavigationStore _modalNavigationStore;
+        private readonly EditMovieViewModel _editMovieViewModel;
 
-        public SubmitEditMovieCommand(ModalNavigationStore modalNavigationStore)
+        public SubmitEditMovieCommand(EditMovieViewModel editMovieViewModel, MoviesStore moviesStore, ModalNavigationStore modalNavigationStore)
         {
+            _moviesStore = moviesStore;
             _modalNavigationStore = modalNavigationStore;
+            _editMovieViewModel = editMovieViewModel;
         }
         public override async Task ExecuteAsync(object parameter)
         {
-            // TODO: edit movie in database
+            var formViewModel = _editMovieViewModel.MovieDetailsFormModel;
 
-            _modalNavigationStore.Close();
+            Movie movie = new Movie(
+                _editMovieViewModel.MovieId,
+                formViewModel.Name,
+                formViewModel.Genre,
+                formViewModel.ReleaseYear
+            );
+
+            try
+            {
+                // TODO: edit movie in database
+                await _moviesStore.Update(movie);
+
+                _modalNavigationStore.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

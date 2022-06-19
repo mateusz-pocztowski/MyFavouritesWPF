@@ -16,7 +16,7 @@ namespace MyFavouritesWPF
         public App()
         {
             _moviesStore = new MoviesStore();
-            _selectedMovieStore = new SelectedMovieStore();
+            _selectedMovieStore = new SelectedMovieStore(_moviesStore);
             _modalNavigationStore = new ModalNavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)

@@ -34,7 +34,7 @@ namespace MyFavouritesWPF.ViewModels
                 _selectedMovieListingItemViewModel = value;
                 OnPropertyChanged(nameof(SelectedMovieListingItemViewModel));
 
-                _selectedMovieStore.selectedMovie = _selectedMovieListingItemViewModel?.Movie;
+                _selectedMovieStore.SelectedMovie = _selectedMovieListingItemViewModel?.Movie;
             }
         }
 
@@ -46,11 +46,13 @@ namespace MyFavouritesWPF.ViewModels
             _movieListingItemViewModels = new ObservableCollection<MovieListingItemViewModel>();
 
             _moviesStore.MovieAdded += MoviesStore_MovieAdded;
+            _moviesStore.MovieUpdated += MoviesStore_MovieUpdated;
         }
 
         protected override void Dispose()
         {
             _moviesStore.MovieAdded -= MoviesStore_MovieAdded;
+            _moviesStore.MovieUpdated -= MoviesStore_MovieUpdated;
             base.Dispose();
         }
 
@@ -59,10 +61,25 @@ namespace MyFavouritesWPF.ViewModels
             AddMovie(movie);
         }
 
+        private void MoviesStore_MovieUpdated(Movie movie)
+        {
+            UpdateMovie(movie);
+        }
+
         private void AddMovie(Movie movie)
         {
-            ICommand editCommand = new OpenEditMovieCommand(movie, _modalNavigationStore);
-            _movieListingItemViewModels.Add(new MovieListingItemViewModel(movie, editCommand));
+            MovieListingItemViewModel viewModel = new MovieListingItemViewModel(movie, _moviesStore, _modalNavigationStore);
+            _movieListingItemViewModels.Add(viewModel);
+        }
+
+        private void UpdateMovie(Movie movie)
+        {
+            MovieListingItemViewModel movieViewModel = _movieListingItemViewModels.FirstOrDefault(m => m.Movie.Id == movie.Id);
+
+            if(movieViewModel != null)
+            {
+                movieViewModel.Update(movie);
+            } 
         }
     }
 }

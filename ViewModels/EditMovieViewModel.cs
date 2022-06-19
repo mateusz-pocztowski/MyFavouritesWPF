@@ -12,11 +12,15 @@ namespace MyFavouritesWPF.ViewModels
 {
     public class EditMovieViewModel : ViewModelBase
     {
+        public Guid MovieId { get; }
+
         public MovieDetailsFormModel MovieDetailsFormModel { get; }
 
-        public EditMovieViewModel(Movie movie, ModalNavigationStore modalNavigationStore)
+        public EditMovieViewModel(Movie movie, MoviesStore _moviesStore, ModalNavigationStore modalNavigationStore)
         {
-            ICommand submitCommand = null;
+            MovieId = movie.Id;
+
+            ICommand submitCommand = new SubmitEditMovieCommand(this, _moviesStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
 
             MovieDetailsFormModel = new MovieDetailsFormModel(submitCommand, cancelCommand)

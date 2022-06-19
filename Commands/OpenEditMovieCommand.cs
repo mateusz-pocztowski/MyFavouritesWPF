@@ -11,19 +11,22 @@ namespace MyFavouritesWPF.Commands
 {
     public class OpenEditMovieCommand : CommandBase
     {
-        private readonly Movie _movie;
+        private readonly MoviesStore _moviesStore;
         private readonly ModalNavigationStore _modalNavigationStore;
+        private readonly MovieListingItemViewModel _movieListingItemViewModel;
 
-        public OpenEditMovieCommand(Movie movie, ModalNavigationStore modalNavigationStore)
+        public OpenEditMovieCommand(MovieListingItemViewModel movieListingItemViewModel, MoviesStore moviesStore, ModalNavigationStore modalNavigationStore)
         {
-
-            _movie = movie;
+            _movieListingItemViewModel = movieListingItemViewModel;
+            _moviesStore = moviesStore;
             _modalNavigationStore = modalNavigationStore;
         }
 
         public override void Execute(object parameter)
         {
-            EditMovieViewModel editMovieViewModel = new EditMovieViewModel(_movie, _modalNavigationStore);
+            Movie movie = _movieListingItemViewModel.Movie;
+
+            EditMovieViewModel editMovieViewModel = new EditMovieViewModel(movie, _moviesStore, _modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = editMovieViewModel;
         }
     }

@@ -10,9 +10,12 @@ namespace MyFavouritesWPF.ViewModels
     public class MovieDetailsViewModel : ViewModelBase
     {
         private readonly SelectedMovieStore _selectedMovieStore;
-        public string Name => _selectedMovieStore.selectedMovie?.Name ?? "-";
-        public string Genre => _selectedMovieStore.selectedMovie?.Genre ?? "-";
-        public string ReleaseYear => _selectedMovieStore.selectedMovie?.ReleaseYear ?? "-";
+
+        public bool HasSelectedMovie => _selectedMovieStore.SelectedMovie != null;
+
+        public string Name => _selectedMovieStore.SelectedMovie?.Name ?? "-";
+        public string Genre => _selectedMovieStore.SelectedMovie?.Genre ?? "-";
+        public string ReleaseYear => _selectedMovieStore.SelectedMovie?.ReleaseYear ?? "-";
 
         public MovieDetailsViewModel(SelectedMovieStore selectedMovieStore)
         {
@@ -29,6 +32,7 @@ namespace MyFavouritesWPF.ViewModels
 
         private void SelectedMovieStore_SelectedMovieChanged()
         {
+            OnPropertyChanged(nameof(HasSelectedMovie));
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(Genre));
             OnPropertyChanged(nameof(ReleaseYear));
