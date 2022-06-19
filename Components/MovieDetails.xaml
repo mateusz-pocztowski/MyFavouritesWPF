@@ -15,7 +15,7 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" FontWeight="Medium" FontSize="22" Text="Interstellar" />
+                <TextBlock Grid.Row="0" FontWeight="Medium" FontSize="22" Text="{Binding Name}" />
 
                 <Grid Grid.Row="1" Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>
@@ -25,7 +25,7 @@
 
                     <TextBlock Grid.Column="0" Text="Genre:" FontWeight="Bold" Margin="0 0 5 0" />
 
-                    <TextBlock Grid.Column="1" Text="Sci-Fi" />
+                    <TextBlock Grid.Column="1" Text="{Binding Genre}" />
                 </Grid>
 
                 <Grid Grid.Row="2" Margin="0 10 0 0">
@@ -36,7 +36,7 @@
 
                     <TextBlock Grid.Column="0" Text="Release year:" FontWeight="Bold" Margin="0 0 5 0" />
 
-                    <TextBlock Grid.Column="1" Text="2014" />
+                    <TextBlock Grid.Column="1" Text="{Binding ReleaseYear}" />
                 </Grid>
             </Grid>
         </Border>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFavouritesWPF.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,10 @@ namespace MyFavouritesWPF.ViewModels
 
         public ICommand AddMovieCommand { get; }
 
-        public MovieViewModel()
+        public MovieViewModel(SelectedMovieStore selectedMovieStore)
         {
-            MovieListingViewModel = new MovieListingViewModel();
-            MovieDetailsViewModel = new MovieDetailsViewModel();
+            MovieListingViewModel = new MovieListingViewModel(selectedMovieStore);
+            MovieDetailsViewModel = new MovieDetailsViewModel(selectedMovieStore);
         }
     }
 }

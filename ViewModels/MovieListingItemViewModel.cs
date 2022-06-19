@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFavouritesWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,16 @@ namespace MyFavouritesWPF.ViewModels
 {
     public class MovieListingItemViewModel : ViewModelBase
     {
-        public string Name { get; }
+        public Movie Movie { get; }
+
+        public string Name => Movie.Name;
+
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public MovieListingItemViewModel(string name)
+        public MovieListingItemViewModel(Movie movie)
         {
-            Name = name;
+            Movie = movie;
         }
     }
 }

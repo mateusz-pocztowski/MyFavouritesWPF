@@ -62,6 +62,8 @@
     <Compile Include="Components\MovieListing.xaml.cs">
       <DependentUpon>MovieListing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Stores\SelectedMovieStore.cs" />
     <Compile Include="ViewModels\MovieDetailsViewModel.cs" />
     <Compile Include="ViewModels\MovieListingItemViewModel.cs" />
     <Compile Include="ViewModels\MovieListingViewModel.cs" />
