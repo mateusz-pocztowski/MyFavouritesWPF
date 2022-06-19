@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CloseModalCommand.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\OpenAddMovieCommand.cs" />
     <Compile Include="Components\DropdownMenu.cs" />
     <Compile Include="Components\Modal.cs" />
     <Compile Include="Components\MovieDetails.xaml.cs">

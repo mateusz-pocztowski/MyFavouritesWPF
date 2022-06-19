@@ -23,6 +23,11 @@ namespace MyFavouritesWPF.Stores
             }
         }
 
+        internal void Close()
+        {
+            CurrentViewModel = null;
+        }
+
         public bool IsOpen => CurrentViewModel != null;
 
         public event Action CurrentViewModelChanged;

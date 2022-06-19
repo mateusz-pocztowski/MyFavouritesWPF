@@ -21,7 +21,7 @@ namespace MyFavouritesWPF
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_modalNavigationStore, new MovieViewModel(_selectedMovieStore))
+                DataContext = new MainViewModel(_modalNavigationStore, new MovieViewModel(_selectedMovieStore, _modalNavigationStore))
             };
             MainWindow.Show();
 

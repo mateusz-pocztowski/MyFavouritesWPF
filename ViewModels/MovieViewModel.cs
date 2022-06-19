@@ -1,4 +1,5 @@
-﻿using MyFavouritesWPF.Stores;
+﻿using MyFavouritesWPF.Commands;
+using MyFavouritesWPF.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace MyFavouritesWPF.ViewModels
 
         public ICommand AddMovieCommand { get; }
 
-        public MovieViewModel(SelectedMovieStore selectedMovieStore)
+        public MovieViewModel(SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
         {
             MovieListingViewModel = new MovieListingViewModel(selectedMovieStore);
             MovieDetailsViewModel = new MovieDetailsViewModel(selectedMovieStore);
+
+            AddMovieCommand = new OpenAddMovieCommand(modalNavigationStore);
         }
     }
 }
