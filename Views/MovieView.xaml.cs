@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MyFavouritesWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainView.xaml
+    /// Logika interakcji dla klasy MovieView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class MovieView : UserControl
     {
-        public MainView()
+        public MovieView()
         {
             InitializeComponent();
         }

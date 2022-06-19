@@ -9,6 +9,6 @@
         FontFamily="Montserrat"
         Title="My Favourites" Height="450" Width="800">
     <Grid Margin="20 10 20 20" >
-        <views:MainView />
+        <views:MovieView />
     </Grid>
 </Window>

@@ -55,20 +55,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Components\MainDetails.xaml.cs">
-      <DependentUpon>MainDetails.xaml</DependentUpon>
+    <Compile Include="Components\MovieDetails.xaml.cs">
+      <DependentUpon>MovieDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\MainListing.xaml.cs">
-      <DependentUpon>MainListing.xaml</DependentUpon>
+    <Compile Include="Components\MovieListing.xaml.cs">
+      <DependentUpon>MovieListing.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\MovieView.xaml.cs">
+      <DependentUpon>MovieView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Components\MainDetails.xaml">
+    <Page Include="Components\MovieDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\MainListing.xaml">
+    <Page Include="Components\MovieListing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -84,7 +86,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\MovieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,8 +117,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
