@@ -18,7 +18,7 @@ namespace MyFavouritesWPF.ViewModels
 
         public MovieViewModel(SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
         {
-            MovieListingViewModel = new MovieListingViewModel(selectedMovieStore);
+            MovieListingViewModel = new MovieListingViewModel(selectedMovieStore, modalNavigationStore);
             MovieDetailsViewModel = new MovieDetailsViewModel(selectedMovieStore);
 
             AddMovieCommand = new OpenAddMovieCommand(modalNavigationStore);

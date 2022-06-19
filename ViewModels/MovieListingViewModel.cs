@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyFavouritesWPF.Models;
+using System.Windows.Input;
+using MyFavouritesWPF.Commands;
 
 namespace MyFavouritesWPF.ViewModels
 {
@@ -34,15 +36,20 @@ namespace MyFavouritesWPF.ViewModels
             }
         }
 
-        public MovieListingViewModel(SelectedMovieStore selectedMovieStore)
+        public MovieListingViewModel(SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
         {
             _selectedMovieStore = selectedMovieStore;
             _movieListingItemViewModels = new ObservableCollection<MovieListingItemViewModel>();
 
-            _movieListingItemViewModels.Add(new MovieListingItemViewModel(new Movie("Movie 1", "Genre 1", "2014")));
-            _movieListingItemViewModels.Add(new MovieListingItemViewModel(new Movie("Movie 2", "Genre 2", "2015")));
-            _movieListingItemViewModels.Add(new MovieListingItemViewModel(new Movie("Movie 3", "Genre 3", "2016")));
-         
+            AddMovie(new Movie("Movie 1", "Genre 1", "2014"), modalNavigationStore);
+            AddMovie(new Movie("Movie 2", "Genre 2", "2015"), modalNavigationStore);
+            AddMovie(new Movie("Movie 3", "Genre 3", "2016"), modalNavigationStore);
+        }
+
+        private void AddMovie(Movie movie, ModalNavigationStore modalNavigationStore)
+        {
+            ICommand editCommand = new OpenEditMovieCommand(movie, modalNavigationStore);
+            _movieListingItemViewModels.Add(new MovieListingItemViewModel(movie, editCommand));
         }
     }
 }

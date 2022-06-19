@@ -17,9 +17,10 @@ namespace MyFavouritesWPF.ViewModels
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public MovieListingItemViewModel(Movie movie)
+        public MovieListingItemViewModel(Movie movie, ICommand editCommand)
         {
             Movie = movie;
+            EditCommand = editCommand;
         }
     }
 }

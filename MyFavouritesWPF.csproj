@@ -55,9 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CloseModalCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\OpenAddMovieCommand.cs" />
+    <Compile Include="Commands\OpenEditMovieCommand.cs" />
+    <Compile Include="Commands\SubmitEditMovieCommand.cs" />
+    <Compile Include="Commands\SubmitAddMovieCommand.cs" />
     <Compile Include="Components\DropdownMenu.cs" />
     <Compile Include="Components\Modal.cs" />
     <Compile Include="Components\MovieDetails.xaml.cs">
@@ -68,6 +72,9 @@
     </Compile>
     <Compile Include="Components\MovieListing.xaml.cs">
       <DependentUpon>MovieListing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MovieListingItem.xaml.cs">
+      <DependentUpon>MovieListingItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Stores\ModalNavigationStore.cs" />
@@ -99,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\MovieListing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MovieListingItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
