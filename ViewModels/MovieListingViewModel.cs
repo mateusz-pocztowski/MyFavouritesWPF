@@ -38,6 +38,8 @@ namespace MyFavouritesWPF.ViewModels
             }
         }
 
+        public ICommand LoadMoviesCommand { get; }
+
         public MovieListingViewModel(MoviesStore moviesStore, SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
         {
             _moviesStore = moviesStore;
@@ -45,15 +47,40 @@ namespace MyFavouritesWPF.ViewModels
             _modalNavigationStore = modalNavigationStore;
             _movieListingItemViewModels = new ObservableCollection<MovieListingItemViewModel>();
 
+            LoadMoviesCommand = new LoadMoviesCommand(moviesStore);
+
+            _moviesStore.MoviesLoaded += MoviesStore_MovieLoaded;
             _moviesStore.MovieAdded += MoviesStore_MovieAdded;
             _moviesStore.MovieUpdated += MoviesStore_MovieUpdated;
+            _moviesStore.MovieDeleted += MoviesStore_MovieDeleted;
+        }
+
+        public static MovieListingViewModel LoadViewModel(MoviesStore moviesStore, SelectedMovieStore selectedMovieStore, ModalNavigationStore modalNavigationStore)
+        {
+            MovieListingViewModel viewModel = new MovieListingViewModel(moviesStore, selectedMovieStore, modalNavigationStore);
+
+            viewModel.LoadMoviesCommand.Execute(null);
+
+            return viewModel;
         }
 
         protected override void Dispose()
         {
+            _moviesStore.MoviesLoaded -= MoviesStore_MovieLoaded;
             _moviesStore.MovieAdded -= MoviesStore_MovieAdded;
             _moviesStore.MovieUpdated -= MoviesStore_MovieUpdated;
+            _moviesStore.MovieDeleted -= MoviesStore_MovieDeleted;
             base.Dispose();
+        }
+
+        private void MoviesStore_MovieLoaded()
+        {
+            _movieListingItemViewModels.Clear();
+
+            foreach (Movie movie in _moviesStore.Movies)
+            {
+                AddMovie(movie);
+            }
         }
 
         private void MoviesStore_MovieAdded(Movie movie)
@@ -64,6 +91,11 @@ namespace MyFavouritesWPF.ViewModels
         private void MoviesStore_MovieUpdated(Movie movie)
         {
             UpdateMovie(movie);
+        }
+
+        private void MoviesStore_MovieDeleted(Guid id)
+        {
+            DeleteMovie(id);
         }
 
         private void AddMovie(Movie movie)
@@ -79,7 +111,17 @@ namespace MyFavouritesWPF.ViewModels
             if(movieViewModel != null)
             {
                 movieViewModel.Update(movie);
-            } 
+            }
+        }
+
+        private void DeleteMovie(Guid id)
+        {
+            MovieListingItemViewModel movieViewModel = _movieListingItemViewModels.FirstOrDefault(m => m.Movie?.Id == id);
+
+            if(movieViewModel != null)
+            {
+                _movieListingItemViewModels.Remove(movieViewModel);
+            }
         }
     }
 }

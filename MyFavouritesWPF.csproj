@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.EntityFrameworkCore.Design.3.1.26\build\net461\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('packages\Microsoft.EntityFrameworkCore.Design.3.1.26\build\net461\Microsoft.EntityFrameworkCore.Design.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -54,6 +55,9 @@
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Abstractions, Version=3.1.26.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Abstractions.3.1.26\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Design, Version=3.1.26.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.EntityFrameworkCore.Design.3.1.26\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=3.1.26.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.EntityFrameworkCore.Relational.3.1.26\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
@@ -166,6 +170,8 @@
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CloseModalCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\DeleteMovieCommand.cs" />
+    <Compile Include="Commands\LoadMoviesCommand.cs" />
     <Compile Include="Commands\OpenAddMovieCommand.cs" />
     <Compile Include="Commands\OpenEditMovieCommand.cs" />
     <Compile Include="Commands\SubmitEditMovieCommand.cs" />
@@ -184,6 +190,19 @@
     <Compile Include="Components\MovieListingItem.xaml.cs">
       <DependentUpon>MovieListingItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\Commands\CreateMovieCommand.cs" />
+    <Compile Include="EntityFramework\Commands\DeleteMovieCommand.cs" />
+    <Compile Include="EntityFramework\Commands\UpdateMovieCommand.cs" />
+    <Compile Include="EntityFramework\DTO\MovieDTO.cs" />
+    <Compile Include="EntityFramework\MoviesDbContext.cs" />
+    <Compile Include="EntityFramework\MoviesDesignTimeDbContextFactory.cs" />
+    <Compile Include="EntityFramework\MoviesDbContextFactory.cs" />
+    <Compile Include="EntityFramework\Queries\GetAllMoviesQuery.cs" />
+    <Compile Include="Migrations\20220626173551_InitialCreate.cs" />
+    <Compile Include="Migrations\20220626173551_InitialCreate.designer.cs">
+      <DependentUpon>20220626173551_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MoviesDbContextModelSnapshot.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Queries\IUpdateMovieCommand.cs" />
     <Compile Include="Queries\IDeleteMovieCommand.cs" />
@@ -285,5 +304,6 @@
       <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.EntityFrameworkCore.Design.3.1.26\build\net461\Microsoft.EntityFrameworkCore.Design.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.EntityFrameworkCore.Design.3.1.26\build\net461\Microsoft.EntityFrameworkCore.Design.props'))" />
   </Target>
 </Project>

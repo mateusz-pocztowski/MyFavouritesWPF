@@ -1,10 +1,12 @@
-﻿using MyFavouritesWPF.Models;
-using MyFavouritesWPF.Queries;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyFavouritesWPF.Models;
+using MyFavouritesWPF.Queries;
+using MyFavouritesWPF.EntityFramework.DTO;
 
 namespace MyFavouritesWPF.EntityFramework.Queries
 {
@@ -17,13 +19,13 @@ namespace MyFavouritesWPF.EntityFramework.Queries
             _contextFactory = contextFactory;
         }
 
-        public Task<IEnumerable<Movie>> Execute()
+        public async Task<IEnumerable<Movie>> Execute()
         {
             using(MoviesDbContext context = _contextFactory.Create())
             {
-                var moviesDTOs = context.Movies.ToList();
+                IEnumerable<MovieDTO> moviesDTOs = await context.Movies.ToListAsync();
 
-                return (Task<IEnumerable<Movie>>)moviesDTOs.Select(y => new Movie(y.Id, y.Name, y.Genre, y.ReleaseYear));
+                return moviesDTOs.Select(y => new Movie(y.Id, y.Name, y.Genre, y.ReleaseYear));
             }
         }
     }

@@ -24,6 +24,7 @@ namespace MyFavouritesWPF.ViewModels
             Movie = movie;
 
             EditCommand = new OpenEditMovieCommand(this, _moviesStore, modalNavigationStore);
+            DeleteCommand = new DeleteMovieCommand(this, _moviesStore);
         }
 
         public void Update(Movie movie)
