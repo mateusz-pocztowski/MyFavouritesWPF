@@ -34,7 +34,6 @@ namespace MyFavouritesWPF.Commands
 
             try
             {
-                // TODO: edit movie in database
                 await _moviesStore.Update(movie);
 
                 _modalNavigationStore.Close();

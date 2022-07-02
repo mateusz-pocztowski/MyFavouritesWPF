@@ -25,7 +25,7 @@ namespace MyFavouritesWPF.EntityFramework.Commands
                 {
                     Id = movie.Id,
                     Name = movie.Name,
-                    Genre = movie.Genre,
+                    Genre = new GenreDTO(movie.Genre.Id, movie.Genre.Name),
                     ReleaseYear = movie.ReleaseYear
                 };
 

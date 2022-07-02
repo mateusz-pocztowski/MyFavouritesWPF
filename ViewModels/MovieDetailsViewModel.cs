@@ -1,4 +1,5 @@
-﻿using MyFavouritesWPF.Stores;
+﻿using MyFavouritesWPF.Models;
+using MyFavouritesWPF.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace MyFavouritesWPF.ViewModels
 
         public bool HasSelectedMovie => _selectedMovieStore.SelectedMovie != null;
 
-        public string Name => _selectedMovieStore.SelectedMovie?.Name ?? "-";
-        public string Genre => _selectedMovieStore.SelectedMovie?.Genre ?? "-";
-        public string ReleaseYear => _selectedMovieStore.SelectedMovie?.ReleaseYear ?? "-";
+        public string Name => _selectedMovieStore.SelectedMovie?.Name;
+        public string Genre => _selectedMovieStore.SelectedMovie?.Genre?.Name;
+        public string ReleaseYear => _selectedMovieStore.SelectedMovie?.ReleaseYear;
 
         public MovieDetailsViewModel(SelectedMovieStore selectedMovieStore)
         {

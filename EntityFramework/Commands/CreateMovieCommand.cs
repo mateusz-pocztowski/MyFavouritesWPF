@@ -21,11 +21,13 @@ namespace MyFavouritesWPF.EntityFramework.Commands
         {
             using (MoviesDbContext context = _contextFactory.Create())
             {
+                GenreDTO genre = await context.Genres.FindAsync(movie.Genre.Id);
+
                 MovieDTO movieDTO = new MovieDTO()
                 {
                     Id = movie.Id,
                     Name = movie.Name,
-                    Genre = movie.Genre,
+                    Genre = genre,
                     ReleaseYear = movie.ReleaseYear
                 };
 

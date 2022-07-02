@@ -10,8 +10,11 @@ namespace MyFavouritesWPF.EntityFramework
 {
     public class MoviesDbContext : DbContext
     {
-        public MoviesDbContext(DbContextOptions options) : base(options) { }
+        public MoviesDbContext(DbContextOptions options) : base(options) {
+            Database.EnsureCreated();
+        }
 
         public DbSet<MovieDTO> Movies { get; set; }
+        public DbSet<GenreDTO> Genres { get; set; }
     }
 }

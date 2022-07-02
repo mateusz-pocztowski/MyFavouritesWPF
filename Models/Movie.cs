@@ -6,10 +6,11 @@ namespace MyFavouritesWPF.Models
     {
         public Guid Id { get; }
         public string Name { get; }
-        public string Genre { get; }
+        public Guid GenreId { get; }
+        public Genre Genre { get; }
         public string ReleaseYear { get; }
 
-        public Movie(Guid id, string name, string genre, string releaseYear)
+        public Movie(Guid id, string name, Genre genre, string releaseYear)
         {
             Id = id;
             Name = name;

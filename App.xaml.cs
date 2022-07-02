@@ -17,6 +17,7 @@ namespace MyFavouritesWPF
         private readonly MoviesDbContextFactory _moviesDbContextFactory;
 
         private readonly IGetAllMoviesQuery _getAllMoviesQuery;
+        private readonly IGetAllGenresQuery _getAllGenresQuery;
         private readonly ICreateMovieCommand _createMovieCommand;
         private readonly IUpdateMovieCommand _updateMovieCommand;
         private readonly IDeleteMovieCommand _deleteMovieCommand;
@@ -31,11 +32,12 @@ namespace MyFavouritesWPF
             _moviesDbContextFactory = new MoviesDbContextFactory(new DbContextOptionsBuilder().UseSqlite(_connectionString).Options);
 
             _getAllMoviesQuery = new GetAllMoviesQuery(_moviesDbContextFactory);
+            _getAllGenresQuery = new GetAllGenresQuery(_moviesDbContextFactory);
             _createMovieCommand = new CreateMovieCommand(_moviesDbContextFactory);
             _updateMovieCommand = new UpdateMovieCommand(_moviesDbContextFactory);
             _deleteMovieCommand = new DeleteMovieCommand(_moviesDbContextFactory);
 
-            _moviesStore = new MoviesStore(_getAllMoviesQuery, _createMovieCommand, _updateMovieCommand, _deleteMovieCommand);
+            _moviesStore = new MoviesStore(_getAllMoviesQuery, _getAllGenresQuery, _createMovieCommand, _updateMovieCommand, _deleteMovieCommand);
             _selectedMovieStore = new SelectedMovieStore(_moviesStore);
             _modalNavigationStore = new ModalNavigationStore();
         }
@@ -43,7 +45,7 @@ namespace MyFavouritesWPF
         {
             using(MoviesDbContext context = _moviesDbContextFactory.Create())
             {
-                context.Database.Migrate();
+                GenreConfiguration.Configure(context);
             }
 
             MovieViewModel moviesViewModel = new MovieViewModel(_moviesStore, _selectedMovieStore, _modalNavigationStore);

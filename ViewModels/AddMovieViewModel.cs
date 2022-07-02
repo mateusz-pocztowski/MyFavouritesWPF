@@ -1,4 +1,5 @@
 ﻿using MyFavouritesWPF.Commands;
+using MyFavouritesWPF.Models;
 using MyFavouritesWPF.Stores;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,11 @@ namespace MyFavouritesWPF.ViewModels
 
         public AddMovieViewModel(MoviesStore moviesStore, ModalNavigationStore modalNavigationStore)
         {
+            IEnumerable<Genre> genres = moviesStore.Genres;
             ICommand submitCommand = new SubmitAddMovieCommand(this, moviesStore, modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
 
-            MovieDetailsFormModel = new MovieDetailsFormModel(submitCommand, cancelCommand);
+            MovieDetailsFormModel = new MovieDetailsFormModel(genres, submitCommand, cancelCommand);
         }
     }
 }

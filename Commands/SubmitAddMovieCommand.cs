@@ -34,7 +34,6 @@ namespace MyFavouritesWPF.Commands
 
             try
             {
-                // TODO: add movie to database
                 await _moviesStore.Add(movie);
 
                 _modalNavigationStore.Close();

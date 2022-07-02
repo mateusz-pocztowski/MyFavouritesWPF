@@ -11,25 +11,31 @@ namespace MyFavouritesWPF.Stores
     public class MoviesStore
     {
         private readonly IGetAllMoviesQuery _getAllMoviesQuery;
+        private readonly IGetAllGenresQuery _getAllGenresQuery;
         private readonly ICreateMovieCommand _createMovieCommand;
         private readonly IUpdateMovieCommand _updateMovieCommand;
         private readonly IDeleteMovieCommand _deleteMovieCommand;
 
         private readonly List<Movie> _movies;
+        private readonly List<Genre> _genres;
         public IEnumerable<Movie> Movies => _movies;
+        public IEnumerable<Genre> Genres => _genres;
 
         public MoviesStore(
             IGetAllMoviesQuery getAllMoviesQuery,
+            IGetAllGenresQuery getAllGenresQuery,
             ICreateMovieCommand createMovieCommand,
             IUpdateMovieCommand updateMovieCommand,
             IDeleteMovieCommand deleteMovieCommand)
         {
             _getAllMoviesQuery = getAllMoviesQuery;
+            _getAllGenresQuery = getAllGenresQuery;
             _createMovieCommand = createMovieCommand;
             _updateMovieCommand = updateMovieCommand;
             _deleteMovieCommand = deleteMovieCommand;
 
             _movies = new List<Movie>();
+            _genres = new List<Genre>();
         }
 
         public event Action MoviesLoaded;
@@ -38,10 +44,14 @@ namespace MyFavouritesWPF.Stores
         public event Action<Guid> MovieDeleted;
         public async Task Load()
         {
+            IEnumerable<Genre> genres = await _getAllGenresQuery.Execute();
             IEnumerable<Movie> movies = await _getAllMoviesQuery.Execute();
 
             _movies.Clear();
             _movies.AddRange(movies);
+            
+            _genres.Clear();
+            _genres.AddRange(genres);
 
             MoviesLoaded?.Invoke();
         }

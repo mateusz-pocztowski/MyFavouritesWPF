@@ -12,7 +12,7 @@ namespace MyFavouritesWPF.EntityFramework.DTO
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Genre { get; set; }
+        public GenreDTO Genre { get; set; }
         public string ReleaseYear { get; set; }
     }
 }

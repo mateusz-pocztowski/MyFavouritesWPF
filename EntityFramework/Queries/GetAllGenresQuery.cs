@@ -10,22 +10,22 @@ using MyFavouritesWPF.EntityFramework.DTO;
 
 namespace MyFavouritesWPF.EntityFramework.Queries
 {
-    public class GetAllMoviesQuery : IGetAllMoviesQuery
+    public class GetAllGenresQuery : IGetAllGenresQuery
     {
         private readonly MoviesDbContextFactory _contextFactory;
 
-        public GetAllMoviesQuery(MoviesDbContextFactory contextFactory)
+        public GetAllGenresQuery(MoviesDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
 
-        public async Task<IEnumerable<Movie>> Execute()
+        public async Task<IEnumerable<Genre>> Execute()
         {
             using(MoviesDbContext context = _contextFactory.Create())
             {
-                IEnumerable<MovieDTO> moviesDTOs = await context.Movies.Include(m => m.Genre).ToListAsync();
+                IEnumerable<GenreDTO> genresDTOs = await context.Genres.ToListAsync();
 
-                return moviesDTOs.Select(m => new Movie(m.Id, m.Name, new Genre(m.Genre.Id, m.Genre.Name), m.ReleaseYear));
+                return genresDTOs.Select(g => new Genre(g.Id, g.Name));
             }
         }
     }

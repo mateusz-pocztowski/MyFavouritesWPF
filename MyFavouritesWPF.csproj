@@ -193,17 +193,22 @@
     <Compile Include="EntityFramework\Commands\CreateMovieCommand.cs" />
     <Compile Include="EntityFramework\Commands\DeleteMovieCommand.cs" />
     <Compile Include="EntityFramework\Commands\UpdateMovieCommand.cs" />
+    <Compile Include="EntityFramework\DTO\GenreDTO.cs" />
     <Compile Include="EntityFramework\DTO\MovieDTO.cs" />
+    <Compile Include="EntityFramework\GenreConfiguration.cs" />
     <Compile Include="EntityFramework\MoviesDbContext.cs" />
     <Compile Include="EntityFramework\MoviesDesignTimeDbContextFactory.cs" />
     <Compile Include="EntityFramework\MoviesDbContextFactory.cs" />
+    <Compile Include="EntityFramework\Queries\GetAllGenresQuery.cs" />
     <Compile Include="EntityFramework\Queries\GetAllMoviesQuery.cs" />
-    <Compile Include="Migrations\20220626173551_InitialCreate.cs" />
-    <Compile Include="Migrations\20220626173551_InitialCreate.designer.cs">
-      <DependentUpon>20220626173551_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20220626205915_Initial.cs" />
+    <Compile Include="Migrations\20220626205915_Initial.designer.cs">
+      <DependentUpon>20220626205915_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\MoviesDbContextModelSnapshot.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Queries\IGetAllGenresQuery.cs" />
     <Compile Include="Queries\IUpdateMovieCommand.cs" />
     <Compile Include="Queries\IDeleteMovieCommand.cs" />
     <Compile Include="Queries\ICreateMovieCommand.cs" />
@@ -297,6 +302,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

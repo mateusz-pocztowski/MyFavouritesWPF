@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFavouritesWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace MyFavouritesWPF.ViewModels
 {
     public class MovieDetailsFormModel : ViewModelBase
     {
+        private readonly IEnumerable<Genre> _genres;
+
         private string _name;
         public string Name
         {
@@ -24,8 +27,8 @@ namespace MyFavouritesWPF.ViewModels
             }
         }
 
-        private string _genre;
-        public string Genre
+        private Genre _genre;
+        public Genre Genre
         {
             get
             {
@@ -35,6 +38,7 @@ namespace MyFavouritesWPF.ViewModels
             {
                 _genre = value;
                 OnPropertyChanged(nameof(Genre));
+                OnPropertyChanged(nameof(CanSubmit));
             }
         }
 
@@ -52,14 +56,15 @@ namespace MyFavouritesWPF.ViewModels
             }
         }
 
-        public bool CanSubmit => !string.IsNullOrEmpty(Name);
+        public bool CanSubmit => !string.IsNullOrEmpty(Name) && Genre != null;
+        public IEnumerable<Genre> AllGenres => _genres;
 
         public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
-
-        public MovieDetailsFormModel(ICommand submitCommand, ICommand cancelCommand)
+        public MovieDetailsFormModel(IEnumerable<Genre> genres, ICommand submitCommand, ICommand cancelCommand)
         {
+            _genres = genres;
             SubmitCommand = submitCommand;
             CancelCommand = cancelCommand;
         }

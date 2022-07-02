@@ -9,8 +9,8 @@ using MyFavouritesWPF.EntityFramework;
 namespace MyFavouritesWPF.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
-    [Migration("20220626173551_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220626205915_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,13 +18,27 @@ namespace MyFavouritesWPF.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.26");
 
+            modelBuilder.Entity("MyFavouritesWPF.EntityFramework.DTO.GenreDTO", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+                });
+
             modelBuilder.Entity("MyFavouritesWPF.EntityFramework.DTO.MovieDTO", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Genre")
+                    b.Property<Guid?>("GenreId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -35,7 +49,16 @@ namespace MyFavouritesWPF.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenreId");
+
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("MyFavouritesWPF.EntityFramework.DTO.MovieDTO", b =>
+                {
+                    b.HasOne("MyFavouritesWPF.EntityFramework.DTO.GenreDTO", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId");
                 });
 #pragma warning restore 612, 618
         }
