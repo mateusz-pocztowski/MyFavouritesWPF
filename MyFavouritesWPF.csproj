@@ -201,11 +201,6 @@
     <Compile Include="EntityFramework\MoviesDbContextFactory.cs" />
     <Compile Include="EntityFramework\Queries\GetAllGenresQuery.cs" />
     <Compile Include="EntityFramework\Queries\GetAllMoviesQuery.cs" />
-    <Compile Include="Migrations\20220626205915_Initial.cs" />
-    <Compile Include="Migrations\20220626205915_Initial.designer.cs">
-      <DependentUpon>20220626205915_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\MoviesDbContextModelSnapshot.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Queries\IGetAllGenresQuery.cs" />

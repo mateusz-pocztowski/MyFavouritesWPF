@@ -9,7 +9,7 @@ using MyFavouritesWPF.EntityFramework;
 namespace MyFavouritesWPF.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
-    [Migration("20220626205915_Initial")]
+    [Migration("20220702204350_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
